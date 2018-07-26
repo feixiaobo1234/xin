@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<style>
+
+::-webkit-scrollbar{
+			display: none;
+			display: none;
+		}
+
+#first{
+	height:600px;
+	width:350px;
+	border:1px solid  red;
+	overflow:scroll;
+	
+}
+
+</style>
+<body  >
+	<div id="first"></div>
+	姓名<input type="text"  id="username" />
+	：<input type="text"  id="msg"/>
+	<button id="but">提交</button>
+</body>
+
+<script src="jquery-3.3.1.js"></script>
+<script>  
+
+$(function(){
+	 
+	        $("#but").click(function () {
+	            alert("wode");
+	            $.ajax({
+	            	
+	                url:"http://localhost:8080/wode/test",
+	                method:"post",
+	                success:function (result) {
+	                	alert("成功");
+	                }
+
+	        })
+	
+})
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</html>
