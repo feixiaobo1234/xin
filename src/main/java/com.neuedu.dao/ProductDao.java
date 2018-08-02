@@ -8,29 +8,29 @@ import com.neuedu.entity.Product;
 public interface ProductDao {
 
 	 /**
-	  * �����Ʒ
+	  * 添加商品
 	  * */
 	boolean  addProduct(Product product);
 	/**
-	 * �鿴��Ʒ
+	 * 所有商品
 	 * */
 	List<Product> findAll();
 	/**
-	 * �޸���Ʒ
+	 *更新商品
 	 * */
 	boolean  updateProduct(Product product);
 	/**
-	 * ɾ����Ʒ
+	 * 删除商品
 	 * */
 	boolean  deleteProduct(int id);
 	
-	/**����id��ѯ��Ʒ*/
+	/**查找单个商品*/
 	Product  findById(int id);
 	
 	/**
-	 * ��ҳ��ѯ
+	 * 分页查询
 	 * */
 	PageModel<Product> findProductByPage(int pageNo, int pageSize);
 	
-	
+	int checkName(String name);
 }

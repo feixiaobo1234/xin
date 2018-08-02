@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper  namespace="com.neuedu.dao.CartDao">
+    <insert  id="addCart" parameterType="Cart" keyColumn="id" keyProperty="id" useGeneratedKeys="true" statementType="PREPARED">
+    insert into cart(productid,productnum) values(#{product.id},#{productNum})
+    </insert>
+
+    <!--Cart是返回值类型-->
+    <resultMap id="cart" type="Cart" autoMapping="true">
+        <id property="id" column="id"></id>
+        <result property="productNum" column="productnum"></result>
+        <!--一对一的映射  底层就是执行第二条语句-->
+        <!--property 对应的是 cart类中product 这个属性， column是数据库中的productid-->
+        <association  property="product" column="productid" javaType="Product" autoMapping="true">
+            <!--主键 用id-->
+            <id property="id" column="productid"></id>
+            <!--其他值 用result-->
+            <result property="name" column="ename"></result>
+            <result property="desc" column="pdesc"></result>
+            <result property="price" column="price"></result>
+            <result property="stock" column="stock"></result>
+            <result property="rule" column="rule"></result>
+            <result property="image" column="image"></result>
+
+        </association>
+    </resultMap>
+    <select id="findAllCart"  resultMap="cart" >
+    select c.id  id,c.productid  productid,c.productnum productnum, p.name ename,p.pdesc pdesc,p.price price,
+    p.rule rule,p.image image,p.stock stock  from cart c
+    left join product p
+    on c.productid=p.id
+    </select>
+
+</mapper>

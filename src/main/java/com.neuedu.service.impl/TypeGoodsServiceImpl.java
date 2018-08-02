@@ -2,6 +2,7 @@ package com.neuedu.service.impl;
 
 import java.util.List;
 
+import com.neuede.dao.impl.mybatis.TypeGoodsMybatis;
 import com.neuedu.dao.ProductDao;
 import com.neuedu.dao.TypeGoodsDao;
 import com.neuedu.dao.impl.jdbc.ProductDaoImpl;
@@ -13,8 +14,10 @@ import com.neuedu.service.TypeGoodsService;
 
 public class TypeGoodsServiceImpl implements TypeGoodsService {
 
-	
-	TypeGoodsDao typegoodsDao=new TypeGoodsDaoImpl();
+//	连接数据库的service
+//	TypeGoodsDao typegoodsDao=new TypeGoodsDaoImpl();
+//	连接Mybatis的service
+	TypeGoodsDao typegoodsDao=new TypeGoodsMybatis();
 	@Override
 	public boolean addTypeGoods(TypeGoods typegoods) {
 		// TODO Auto-generated method stub

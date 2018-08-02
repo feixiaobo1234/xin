@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.neuedu.entity.TypeGoods">
+    <!--添加种类-->
+   <insert id="addTypeGoods" parameterType="TypeGoods">
+        insert  into typegoods values (null,#{name},#{gdesc},#{image},#{grade},now())
+   </insert>
+<!--更新种类-->
+    <update id="updateTypeGoods" parameterType="TypeGoods">
+        update  typegoods set name=#{name},gdesc=#{gdesc},image=#{image},grade=#{grade},ctime=now() where id=#{id}
+    </update>
+<!--删除种类-->
+    <delete id="deleteTypeGoods" parameterType="int">
+        delete from typegoods where id=#{id}
+    </delete>
+<!--查找单个种类-->
+    <select id="findById" resultType="TypeGoods" parameterType="int">
+        select * from  typegoods where id=#{id}
+    </select>
+    <!--分页查询-->
+    <!--查询总的记录数-->
+
+    <select id="findTotle" resultType="int">
+        select count(*) from typegoods
+    </select>
+
+    <select id="findTypeByPage" resultType="TypeGoods" parameterType="map">
+        select * from typegoods limit #{offset},#{pagesize}
+    </select>
+
+</mapper>

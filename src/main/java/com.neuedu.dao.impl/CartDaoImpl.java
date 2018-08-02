@@ -5,6 +5,7 @@ import java.util.List;
 import com.neuedu.dao.CartDao;
 import com.neuedu.data.DataSource;
 import com.neuedu.entity.Cart;
+import com.neuedu.entity.PageModel;
 
 public class CartDaoImpl implements CartDao {
 
@@ -75,6 +76,11 @@ public class CartDaoImpl implements CartDao {
 	public void clearCart() {
 		// TODO Auto-generated method stub
 		DataSource.carts.clear();
+	}
+
+	@Override
+	public PageModel<Cart> findCartByPage(int pageNo, int pageSize) {
+		return null;
 	}
 
 }

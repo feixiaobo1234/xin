@@ -12,16 +12,16 @@ public class UserOrderItem implements Serializable{
 	 */
 	private static final long serialVersionUID = -7043733043311467481L;
 	private  int  id;
-	private  long order_no;
-	private int user_id;
-	private int product_id;
-	private String product_name;
-	private String product_image;
-	private double current_unit_price;
-	private int quantity;
-	private double total_price;
-	private long create_time;
-	private long update_time;
+	private  long order_no;//订单编号
+	private int user_id;//用户ID
+	private int product_id;//商品ID
+	private String product_name;//商品名称
+	private String product_image;//商品图片
+	private double current_unit_price;//商品现在的价格
+	private int quantity;//商品数量
+	private double total_price;//商品价格
+	private long create_time;//创建时间
+	private long update_time;//更新时间
 	public UserOrderItem(int id, long order_no, int user_id, int product_id, String product_name, String product_image,
 			double current_unit_price, int quantity, double total_price, long create_time, long update_time) {
 		super();

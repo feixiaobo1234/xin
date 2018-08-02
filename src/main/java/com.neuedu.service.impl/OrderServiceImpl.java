@@ -3,6 +3,9 @@ package com.neuedu.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.neuede.dao.impl.mybatis.CartMybatis;
+import com.neuede.dao.impl.mybatis.OrderItemMybatis;
+import com.neuede.dao.impl.mybatis.OrderMybatis;
 import com.neuedu.dao.CartDao;
 import com.neuedu.dao.OrderDao;
 import com.neuedu.dao.OrderItemDao;
@@ -18,9 +21,12 @@ import com.neuedu.utils.Utils;
 
 public class OrderServiceImpl implements OrderService {
 
-	CartDao cartDao=new CartDaoImpl();
-	OrderDao orderDao=new OrderDaoImpl();
-	OrderItemDao orderItemDao=new OrderItemDaoImpl();
+//	CartDao cartDao=new CartDaoImpl();
+//	OrderDao orderDao=new OrderDaoImpl();
+//	OrderItemDao orderItemDao=new OrderItemDaoImpl();
+		CartDao cartDao=new CartMybatis();
+		OrderDao orderDao=new OrderMybatis();
+		OrderItemDao orderItemDao=new OrderItemMybatis();
 	@Override
 	public boolean createOrder() {
 		// TODO Auto-generated method stub
@@ -82,7 +88,8 @@ public class OrderServiceImpl implements OrderService {
 		
 		UserOrder order=new UserOrder();
 		//设置订单id
-		order.setId(orderDao.generateOrderId());
+//		自动增长 没必要设置id
+//		order.setId(orderDao.generateOrderId());
 		// 1s=1000ms  1970 1.1 - 当前
 		order.setOrder_no(generateOrderNo());
 		order.setCreate_time(System.currentTimeMillis());

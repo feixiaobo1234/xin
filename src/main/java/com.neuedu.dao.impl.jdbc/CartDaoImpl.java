@@ -10,6 +10,7 @@ import java.util.List;
 import com.neuedu.dao.CartDao;
 import com.neuedu.dao.ProductDao;
 import com.neuedu.entity.Cart;
+import com.neuedu.entity.PageModel;
 import com.neuedu.entity.Product;
 import com.neuedu.utils.DBUtils;
 
@@ -18,6 +19,7 @@ public class CartDaoImpl implements CartDao {
 	ProductDao productDao = new ProductDaoImpl();
 
 	@Override
+//	添加购物车、
 	public boolean addCart(Cart cart) {
 		// TODO Auto-generated method stub
 
@@ -51,6 +53,7 @@ public class CartDaoImpl implements CartDao {
 	}
 
 	@Override
+//	删除购物车
 	public boolean deleteCart(int id) {
 		// TODO Auto-generated method stub
 
@@ -80,6 +83,7 @@ public class CartDaoImpl implements CartDao {
 	}
 
 	@Override
+//	更新 购物车
 	public boolean updataeCart(Cart cart) {
 		// TODO Auto-generated method stub
 
@@ -109,6 +113,7 @@ public class CartDaoImpl implements CartDao {
 	}
 
 	@Override
+//	查询购物车
 	public List<Cart> findAllCart() {
 		// TODO Auto-generated method stub
 
@@ -152,12 +157,14 @@ public class CartDaoImpl implements CartDao {
 	}
 
 	@Override
+//	获取购物车数量
 	public int getCartNum() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
+//	通过id  num更新购物车
 	public boolean updateCart(int id, int num) {
 		// TODO Auto-generated method stub
 		Connection conn = null;
@@ -186,9 +193,16 @@ public class CartDaoImpl implements CartDao {
 	}
 
 	@Override
+//	清空购物车
 	public void clearCart() {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+//	分页查询所有
+	public PageModel<Cart> findCartByPage(int pageNo, int pageSize) {
+		return null;
 	}
 
 }

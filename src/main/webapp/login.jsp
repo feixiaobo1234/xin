@@ -5,8 +5,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
+    <style>
+
+
+    </style>
+
 </head>
+
 <body>
+
+
 <form action="login"method="post">
 <table>
 <tr>
@@ -17,10 +25,15 @@
 <tr>
 <td>密码:<td>
 <td><input type="text"  name="password"></td></tr>
+
 <tr>
 <td><input type="submit"value="提交"></td>
 </tr>
 </table>
 </form>
+
+
 </body>
+
+
 </html>

@@ -3,6 +3,7 @@ package com.neuedu.dao;
 import java.util.List;
 
 import com.neuedu.entity.Cart;
+import com.neuedu.entity.PageModel;
 
 /**
  * 
@@ -44,7 +45,8 @@ public interface CartDao {
 	 * ��չ��ﳵ
 	 * */
 	void  clearCart() ;
-	
-	
+
+//	PageModel<Product> findProductByPage(int pageNo, int pageSize);
+	PageModel<Cart>  findCartByPage(int pageNo,int pageSize);
 	
 }

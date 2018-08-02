@@ -12,19 +12,19 @@ public class UserOrder  implements Serializable{
 	 */
 	private static final long serialVersionUID = -5144155657522917012L;
 	private  int  id;
-	private long order_no;
-	private int user_id;
-	private int shipping_id;
+	private long order_no;//订单号
+	private int user_id;//用户ID
+	private int shipping_id;//地址ID
 	private double  payment;//实际付款金额
-	private int payment_type;
-	private int  postage;
-	private int  status;
-	private long  payment_time;
-	private long  send_time;
-	private long  end_time;
-	private long close_time;
-	private long  create_time;
-	private long update_time;
+	private int payment_type;//支付类型
+	private int  postage;//运费
+	private int  status;//订单状态
+	private long  payment_time;//支付时间
+	private long  send_time;//发货事件
+	private long  end_time;//交易发货时间
+	private long close_time;//交易关闭时间
+	private long  create_time;//创建时间
+	private long update_time;//更新时间
 	public UserOrder(int id, long order_no, int user_id, int shipping_id, double payment, int payment_type, int postage,
 			int status, long payment_time, long send_time, long end_time, long close_time, long create_time,
 			long update_time) {

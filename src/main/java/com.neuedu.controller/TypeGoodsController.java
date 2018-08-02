@@ -49,20 +49,18 @@ public class TypeGoodsController extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(req, resp);
 	}
-
+//service的具体实现类
 	TypeGoodsService typegoodsService = new TypeGoodsServiceImpl();
 
 	/**
-	 * 增加种类
-	 * 
+	 * 增加种类（不和前端连接）
 	 */
 	public boolean addTypeGoods(TypeGoods typegoods) {
 		return typegoodsService.addTypeGoods(typegoods);
 	}
-
+	//	增加种类 （和前端连接   jsp   )
 	public boolean addTypeGoods(HttpServletRequest request, HttpServletResponse response) {
 		TypeGoods typegoods = new TypeGoods();
-
 		String name = request.getParameter("name");
 		String desc = request.getParameter("desc");
 		String image = request.getParameter("image");
@@ -87,16 +85,14 @@ public class TypeGoodsController extends HttpServlet {
 	}
 
 	/**
-	 * 查询所有
-	 * 
+	 * 查询所有 (不和前端连接）
 	 */
 	public void findAll() {
 		typegoodsService.findAll();
 	}
-//分页查询
+	//分页查询 （和前端连接)
 	public void findAll(HttpServletRequest request, HttpServletResponse response) {
-		
-		
+
 		try {
 //		设置pageNo
 		String _pageNo=request.getParameter("pageNO");
@@ -122,13 +118,14 @@ public class TypeGoodsController extends HttpServlet {
 	}
 
 	/**
-	 * 删除种类
-	 * 
+	 * 删除种类(不和前端连接）
 	 */
 	public boolean deleteTypeGoods(int id) {
 		return typegoodsService.deleteTypeGoods(id);
 	}
-	
+	/**
+	 * 删除种类(和前端连接）
+	 */
 	public boolean deleteTypeGoods(HttpServletRequest request,HttpServletResponse response) {
 		String  _id =request.getParameter("id");
 		try {
@@ -144,13 +141,15 @@ public class TypeGoodsController extends HttpServlet {
 	}
 
 	/**
-	 * 更新种类
-	 * 
+	 * 更新种类(不和前端连接）
 	 */
 	public boolean updateTypeGoods(TypeGoods typegoods) {
 		return typegoodsService.updateTypeGoods(typegoods);
 	}
-	
+
+	/**
+	 * 更新种类(和前端连接）
+	 */
 	public boolean updateTypeGoods(HttpServletRequest request,HttpServletResponse response) {
 		String _id=request.getParameter("id");
 		String name=request.getParameter("name");
@@ -183,13 +182,14 @@ public class TypeGoodsController extends HttpServlet {
 	}
 
 	/**
-	 * 根据id查询种类
-	 * 
+	 * 根据id查询种类(不和前端连接）
 	 */
 	public TypeGoods findTypeGoodsById(int id) {
 		return typegoodsService.findTypeGoodsById(id);
 	}
-	
+	/**
+	 * 根据id查询种类(和前端连接）
+	 */
 	public TypeGoods findTypeGoodsById(HttpServletRequest request,HttpServletResponse response) {
 		TypeGoods typegoods = new TypeGoods();
 		String  _id=request.getParameter("id");
@@ -208,10 +208,6 @@ public class TypeGoodsController extends HttpServlet {
 		
 		return typegoods;
 	}
-	/**
-	 * 分页查询
-	 * 
-	 */
 	
 	
 }

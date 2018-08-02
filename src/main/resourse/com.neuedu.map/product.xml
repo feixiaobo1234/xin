@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.neuedu.entity.Product">
+    <select id="findById"  resultType="com.neuedu.entity.Product"  parameterType="int">
+        select *  FROM  product  where  id =#{id}
+    </select>
+
+    <select id="checkName" resultType="java.lang.Integer"  parameterType="String">
+        select  count(name)  from  product  where name = #{name}
+    </select>
+    <!--添加商品-->
+    <insert id="addProduct"  parameterType="Product">
+        insert into product values(NULL ,#{name},#{desc},#{price},#{rule},#{image},#{stock})
+    </insert>
+
+    <update id="updateProduct" parameterType="Product" statementType="PREPARED">
+       update product set name=#{name},pdesc=#{desc},price=#{price},rule=#{rule},image=#{image},stock=#{stock} where id =#{id}
+    </update>
+
+    <delete id="deleteProduct" parameterType="int">
+        delete  from  product  where id=#{id}
+    </delete>
+<!--查询所有商品数量-->
+    <select id="findCount" resultType="int">
+        select count(id) from product
+    </select>
+<!--查询每页的商品数量-->
+    <select id="findPageList" resultType="Product" parameterType="map">
+        select * from product limit #{offset},#{pagesize}
+    </select>
+
+
+
+</mapper>

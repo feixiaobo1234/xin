@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper  namespace="com.neuedu.entity.Account">
+
+    <select id="findByUserAndPassword" resultType="com.neuedu.entity.Account" parameterType="map" >
+        select  * from  account where  username=#{username}     and   password =#{password}
+    </select>
+
+</mapper>
+
+
+
+
+        <!--<mapper namespace="com.qbd.mapper.StudentMappers">-->
+    <!--<select id="findbyid" parameterType="Integer" resultMap="StudentResult">-->
+        <!--select *from student where id=#{id}-->
+    <!--</select>-->
+
+    <!--<select id="findbygradeid" parameterType="Integer" resultMap="StudentResult">-->
+        <!--select *from student where gid=#{gid}-->
+    <!--</select>-->
+
+    <!--<resultMap type="Student" id="StudentResult">-->
+        <!--<id property="id" column="id"/>-->
+        <!--<result property="name" column="name"/>-->
+        <!--<result property="age" column="age"/>-->
+        <!--<association property="address" column="addid" select="com.qbd.mapper.AddressMappers.findbyid">-->
+        <!--</association>-->
+        <!--<association property="grade" column="gid" select="com.qbd.mapper.GradeMappers.findbyid">-->
+        <!--</association>-->
+    <!--</resultMap>-->
+<!--</mapper>-->

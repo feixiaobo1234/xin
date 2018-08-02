@@ -90,6 +90,10 @@ public class ProductDaoImpl implements ProductDao {
 		return null;
 	}
 
-	
-	
+	@Override
+	public int checkName(String name) {
+		return 0;
+	}
+
+
 }

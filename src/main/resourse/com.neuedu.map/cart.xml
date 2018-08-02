@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper  namespace="com.neuedu.entity.Cart">
+    <!--增加购物车-->
+    <insert id="addCart"  parameterType="Cart">
+        insert into cart values(NULL ,#{id},#{product.id})
+    </insert>
+    <!--删除购物车-->
+    <delete id="deleteCart" parameterType="int">
+        delete  from  cart  where id=#{id}
+    </delete>
+    <!--更新购物车    这个失败了-->
+    <!--<update id="updateCart" parameterType="Cart" statementType="PREPARED">-->
+        <!--update cart set productid=#{product.getId()},productnum=#{productnum} where id =#{id}-->
+    <!--</update>-->
+
+    <!--查询所有购物车数量-->
+    <select id="findTotle" resultType="int">
+        select count(id) from product
+    </select>
+    <!--查询每页的购物车数量-->
+    <select id="findPageList" resultType="Cart" parameterType="map">
+        select * from product limit #{offset},#{pagesize}
+    </select>
+
+    <!--更新购物车数量-->
+    <update id="updateCart" parameterType="map" statementType="PREPARED">
+        update cart set productnum=#{num} where id =#{id}
+    </update>
+
+    <!--货物购物车的数量-->
+    <select id="getCartNum"  resultType="int">
+        select count(id) from cart
+    </select>
+    <!--清空购物车的数量-->
+    <delete id="clearCart">
+        delete  from cart
+    </delete>
+</mapper>

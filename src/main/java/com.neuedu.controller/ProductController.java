@@ -15,6 +15,7 @@ import com.neuedu.service.impl.ProductServiceImpl;
 
 @WebServlet("/product")
 public class ProductController extends HttpServlet {
+
 	ProductService pService = new ProductServiceImpl();
 
 	@Override
@@ -32,24 +33,24 @@ public class ProductController extends HttpServlet {
 		String option = req.getParameter("option");
 		System.out.println(option);
 		if ("1".equals(option)) {
-			// Ìí¼ÓÉÌÆ·
+			// ï¿½ï¿½ï¿½ï¿½ï¿½Æ·
 			add(req, resp);
 		} else if ("2".equals(option)) {
-			// ²é¿´ËùÓĞÉÌÆ· ÓĞ·ÖÒ³²éÑ¯
+			// ï¿½é¿´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ· ï¿½Ğ·ï¿½Ò³ï¿½ï¿½Ñ¯
 			findAll(req, resp);
 
 		} else if ("3".equals(option)) {
-			// É¾³ıÉÌÆ·
+			// É¾ï¿½ï¿½ï¿½ï¿½Æ·
 			deleteProduct(req, resp);
 		} else if ("4".equals(option)) {
-			// ¸üĞÂÉÌÆ·
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·
 			updateProduct(req, resp);
 		} else if ("5".equals(option)) {
 			findProductById(req, resp);
-			// ²éÕÒµ¥¸öÉÌÆ·
+			// ï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½Æ·
 		}
 	}
-
+//	æ·»åŠ å•†å“jsp
 	public void add(HttpServletRequest req, HttpServletResponse resp) {
 		String name = req.getParameter("name");
 		String desc = req.getParameter("desc");
@@ -74,14 +75,14 @@ public class ProductController extends HttpServlet {
 		boolean flag = pService.addProduct(product);
 		if (flag) {
 			findAll(req, resp);
-			System.out.println("Ìí¼Ó³É¹¦");
+			System.out.println("æ·»åŠ æˆåŠŸ");
 		} else {
 			req.getRequestDispatcher("loginfail.jsp");
-			System.out.println("Ìí¼ÓÊ§°Ü");
+			System.out.println("æ·»åŠ å¤±è´¥");
 		}
 	}
 
-	/** Ìí¼ÓÉÌÆ· */
+	/** æ·»åŠ å•†å“  éœ€è¦è¾“å…¥æ•°æ®*/
 	public boolean addProduct(Product product) {
 		return pService.addProduct(product);
 	}
@@ -93,9 +94,10 @@ public class ProductController extends HttpServlet {
 	//
 	// return pService.addProduct(product);
 	// }
-	/** ²éÑ¯ÉÌÆ· */
+	/** åˆ†é¡µæŸ¥è¯¢jsp */
 
 	@SuppressWarnings("unchecked")
+
 	public void findAll(HttpServletRequest request, HttpServletResponse response) {
 
 		String pageNo = request.getParameter("pageNo");
@@ -116,13 +118,13 @@ public class ProductController extends HttpServlet {
 
 		request.setAttribute("pageModel", pageModel);
 
-		// ÒòÎªĞèÒª½«Êı¾İÏÔÊ¾ÔÚÒ³ÃæÉÏËùÒÔĞèÒªµ÷ÓÃÏÔÊ¾ĞÅÏ¢µÄjsp
+		// ï¿½ï¿½Îªï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½Ï¢ï¿½ï¿½jsp
 		try {
 			request.getRequestDispatcher("showproductByPage.jsp").forward(request, response);
-			System.out.println("Ìø×ª³É¹¦");
+			System.out.println("ï¿½ï¿½×ªï¿½É¹ï¿½");
 		} catch (ServletException | IOException e) {
 			// TODO Auto-generated catch block
-			System.out.println("Ìø×ªÊ§°Ü");
+			System.out.println("ï¿½ï¿½×ªÊ§ï¿½ï¿½");
 		}
 
 	}
@@ -130,17 +132,17 @@ public class ProductController extends HttpServlet {
 	// public void findAll(HttpServletRequest request,HttpServletResponse response){
 	// List<Product> list= pService.findAll();
 	// request.setAttribute("products", list);
-	// //ÒòÎªĞèÒª½«Êı¾İÏÔÊ¾ÔÚÒ³ÃæÉÏËùÒÔĞèÒªµ÷ÓÃÏÔÊ¾ĞÅÏ¢µÄjsp
+	// //ï¿½ï¿½Îªï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½Ï¢ï¿½ï¿½jsp
 	// try {
 	// request.getRequestDispatcher("showproduct.jsp").forward(request, response);
-	// System.out.println("Ìø×ª³É¹¦");
+	// System.out.println("ï¿½ï¿½×ªï¿½É¹ï¿½");
 	// } catch (ServletException | IOException e) {
 	// // TODO Auto-generated catch block
-	// System.out.println("Ìø×ªÊ§°Ü");
+	// System.out.println("ï¿½ï¿½×ªÊ§ï¿½ï¿½");
 	// }
 	//
 	// }
-	/** ĞŞ¸ÄÉÌÆ· */
+	/** æ›´æ–°å•†å“ jsp*/
 	public void updateProduct(HttpServletRequest req, HttpServletResponse response) {
 		String _id = req.getParameter("id");
 		String name = req.getParameter("name");
@@ -166,19 +168,19 @@ public class ProductController extends HttpServlet {
 		product.setImage(image);
 		product.setStock(stock);
 
-		System.out.println("ĞŞ¸ÄµÄID"+product.getId());
+		System.out.println("ï¿½Ş¸Äµï¿½ID"+product.getId());
 		boolean flag = pService.updateProduct(product);
 		if (flag) {
 			findAll(req, response);
-			System.out.println("ĞŞ¸Ä³É¹¦");
+			System.out.println("ï¿½Ş¸Ä³É¹ï¿½");
 		} else {
 			req.getRequestDispatcher("loginfail.jsp");
-			System.out.println("ĞŞ¸ÄÊ§°Ü");
+			System.out.println("ï¿½Ş¸ï¿½Ê§ï¿½ï¿½");
 		}
 
 	}
 
-	/** É¾³ıÉÌÆ· */
+	/**åˆ é™¤å•†å“ jsp */
 	public void deleteProduct(HttpServletRequest request, HttpServletResponse response) {
 		boolean flag = pService.deleteProduct(Integer.parseInt(request.getParameter("id")));
 
@@ -186,15 +188,16 @@ public class ProductController extends HttpServlet {
 			findAll(request, response);
 		} else {
 
-			System.out.println("É¾³ıÊ§°Ü");
+			System.out.println("É¾ï¿½ï¿½Ê§ï¿½ï¿½");
 		}
 	}
 
 	/*
-	 * ½«Êı¾İÏÔÊ¾µ½Ò³ÃæÉÏĞèÒªÓÃµ½×÷ÓÃÓò ÒòÎªĞèÒª½«Êı¾İÏÔÊ¾µ½Ò³ÃæÉÏ´ÓÒ³Ãæ»ñÈ¡Êı¾İ£¬½ÓÊÜÒ³Ãæ´«¹ıÀ´µÄÊı¾İ 1.ÏÈ½«Êı¾İÏÔÊ¾µ½¿ØÖÆÌ¨
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Îªï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½Ò³ï¿½ï¿½ï¿½Ï´ï¿½Ò³ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½İ£ï¿½ï¿½ï¿½ï¿½ï¿½Ò³ï¿½æ´«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 1.ï¿½È½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¨
 	 */
+//	æŸ¥è¯¢å•ä¸ªå•†å“
 	public void findProductById(HttpServletRequest request, HttpServletResponse response) {
-		// »ñÈ¡idÒ²¿ÉÒÔÍ¨¹ıÈçºÎ½«Êı¾İÏÔÊ¾ÔÚÒ³ÃæÉÏ
+		// ï¿½ï¿½È¡idÒ²ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½Î½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½
 		int id = Integer.parseInt(request.getParameter("id"));
 		Product product = pService.findProductById(id);
 		request.setAttribute("product", product);
