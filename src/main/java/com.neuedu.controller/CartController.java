@@ -8,6 +8,8 @@ import com.google.gson.Gson;
 import com.neuedu.entity.Cart;
 import com.neuedu.service.CartService;
 import com.neuedu.service.impl.CartServiceImpl;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,6 +19,20 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/Cart")
 public class CartController  extends HttpServlet{
+
+    //	设置cartService
+//    CartService cartService=new CartServiceImpl();
+    CartService cartService;
+
+	@Override
+	public void init() throws ServletException {
+		//      要得到CartServiceImpl  的对象
+//		WebApplicationContext webApplicationContext=WebApplicationContextUtils.getWebApplicationContext(this.getServletContext());
+//		cartService=(CartServiceImpl)webApplicationContext.getBean("cartService");
+
+
+	}
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		doPost(req,resp);
@@ -25,6 +41,11 @@ public class CartController  extends HttpServlet{
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//      要得到CartServiceImpl  的对象
+        WebApplicationContext webApplicationContext=WebApplicationContextUtils.getWebApplicationContext(this.getServletContext());
+        cartService=(CartServiceImpl)webApplicationContext.getBean("cartService");
+
+
        String option = req.getParameter("option");
        if("1".equals(option)){
        	findAllCart(req,resp);
@@ -34,7 +55,8 @@ public class CartController  extends HttpServlet{
 
 	}
 
-	CartService cartService=new CartServiceImpl();
+
+
 	
 	/**
 	 * 添加购物车

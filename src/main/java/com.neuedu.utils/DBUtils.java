@@ -20,7 +20,7 @@ public class DBUtils {
 		try {
 			
 			ps.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("jdbc.properties"));
-			Class.forName(ps.getProperty("driver"));
+			Class.forName(ps.getProperty("jdbc.driver"));
 			
 		} catch (ClassNotFoundException e) {
 			
@@ -38,9 +38,9 @@ public class DBUtils {
 	//获取连接
 	public  static   Connection  getConnection() throws SQLException {
 		
-		 String  url=ps.getProperty("url");
-		 String  user=ps.getProperty("username");
-		 String password=ps.getProperty("password");
+		 String  url=ps.getProperty("jdbc.url");
+		 String  user=ps.getProperty("jdbc.username");
+		 String password=ps.getProperty("jdbc.password");
 		 return DriverManager.getConnection(url, user, password);
 		
 	}

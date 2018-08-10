@@ -6,7 +6,8 @@
 
 <mapper  namespace="com.neuedu.entity.Account">
 
-    <select id="findByUserAndPassword" resultType="com.neuedu.entity.Account" parameterType="map" >
+    <select id="findByUserAndPassword" resultType="com.neuedu.entity.Account"
+            parameterType="map" >
         select  * from  account where  username=#{username}     and   password =#{password}
     </select>
 

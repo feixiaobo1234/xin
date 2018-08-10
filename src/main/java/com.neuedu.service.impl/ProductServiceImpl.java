@@ -8,11 +8,20 @@ import com.neuedu.dao.impl.jdbc.ProductDaoImpl;
 import com.neuedu.entity.PageModel;
 import com.neuedu.entity.Product;
 import com.neuedu.service.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+
+@Service
 public class ProductServiceImpl implements ProductService {
 
-	
-	ProductDao productDao=new ProductMabatis();
+	@Autowired
+//	@Qualifier("productMabatis")
+//			@Resource(name="productMabatis")
+	ProductDao productDao;
+
 	
 	@Override
 //	ÃÌº”…Ã∆∑

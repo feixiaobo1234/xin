@@ -1,6 +1,8 @@
 package com.neuedu.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,17 +10,28 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+import com.neuedu.dao.ProductDao;
+import com.neuedu.dao.impl.jdbc.ProductDaoImpl;
 import com.neuedu.entity.PageModel;
 import com.neuedu.entity.Product;
 import com.neuedu.service.ProductService;
 import com.neuedu.service.impl.ProductServiceImpl;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 @WebServlet("/product")
 public class ProductController extends HttpServlet {
 
 	ProductService pService = new ProductServiceImpl();
 
-	@Override
+//    @Override
+//    public void init() throws ServletException {
+//        WebApplicationContext webApplicationContext = WebApplicationContextUtils.getWebApplicationContext(this.getServletContext());
+//        pService=webApplicationContext.getBean(ProductService.class);
+//    }
+
+    @Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doPost(req, resp);
@@ -37,7 +50,8 @@ public class ProductController extends HttpServlet {
 			add(req, resp);
 		} else if ("2".equals(option)) {
 			// �鿴������Ʒ �з�ҳ��ѯ
-			findAll(req, resp);
+//			findAll(req, resp);
+			findAll1(req,resp);
 
 		} else if ("3".equals(option)) {
 			// ɾ����Ʒ
@@ -46,7 +60,7 @@ public class ProductController extends HttpServlet {
 			// ������Ʒ
 			updateProduct(req, resp);
 		} else if ("5".equals(option)) {
-			findProductById(req, resp);
+			findProductById( resp,req);
 			// ���ҵ�����Ʒ
 		}
 	}
@@ -94,11 +108,34 @@ public class ProductController extends HttpServlet {
 	//
 	// return pService.addProduct(product);
 	// }
+
+	public void  findAll1(HttpServletRequest request, HttpServletResponse response){
+		response.setHeader("Access-Control-Allow-Origin" , "*");
+
+
+//		List list =pService.findAll();
+		ProductDao productDao = new ProductDaoImpl();
+		List list = productDao.findAll();
+		Gson gson = new Gson();
+		String list1=gson.toJson(list);
+		try {
+			PrintWriter writer =response.getWriter();
+			writer.print(list1);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+
+
+
 	/** 分页查询jsp */
 
 	@SuppressWarnings("unchecked")
 
 	public void findAll(HttpServletRequest request, HttpServletResponse response) {
+
 
 		String pageNo = request.getParameter("pageNo");
 		if (pageNo == null) {
@@ -198,16 +235,43 @@ public class ProductController extends HttpServlet {
 //	查询单个商品
 	public void findProductById(HttpServletRequest request, HttpServletResponse response) {
 		// ��ȡidҲ����ͨ����ν�������ʾ��ҳ����
+        response.setHeader("Access-Control-Allow-Origin" , "*");
 		int id = Integer.parseInt(request.getParameter("id"));
 		Product product = pService.findProductById(id);
+
 		request.setAttribute("product", product);
+
+		Gson gson = new Gson();
+		String product1=gson.toJson(product);
 		try {
+		   PrintWriter writer = response.getWriter();
+		   writer.print(product1);
 			request.getRequestDispatcher("findProductById.jsp").forward(request, response);
 		} catch (ServletException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+//查询单个商品
+
+	public void findProductById( HttpServletResponse response,HttpServletRequest request) {
+		// ��ȡidҲ����ͨ����ν�������ʾ��ҳ����
+		response.setHeader("Access-Control-Allow-Origin" , "*");
+		int id = Integer.parseInt(request.getParameter("id"));
+		System.out.println("这个id是"+id);
+		Product product = pService.findProductById(id);
+		System.out.println("单个商品名字"+product.getName());
+		Gson gson = new Gson();
+		String product1=gson.toJson(product);
+
+		PrintWriter writer = null;
+		try {
+			writer = response.getWriter();
+			writer.print(product1);
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}

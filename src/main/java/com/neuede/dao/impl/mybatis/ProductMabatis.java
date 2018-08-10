@@ -9,16 +9,23 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Repository;
 
 
+import javax.annotation.Resource;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+@Repository()
 public class ProductMabatis implements ProductDao {
-
+    @Autowired
+//    @Qualifier
+//    @Resource(name)
+    private SqlSession session;
     @Override
 //    添加商品
     public boolean addProduct(Product product) {
@@ -34,13 +41,17 @@ public class ProductMabatis implements ProductDao {
 //
 //        SqlSessionFactory ssf = new SqlSessionFactoryBuilder().build(reader);
 //        session=ssf.openSession();
-        SqlSession session =null;
-        session= Mybatis.getSession();
+//        SqlSession session =null;
+//        session= Mybatis.getSession();
 
         int a =session.insert("com.neuedu.entity.Product.addProduct",product);
+//       ProductDao p= session.getMapper(ProductDao.class);
+//       p.addProduct()
+//        session.getMapper()
         System.out.println(a);
-        session.commit();
-        session.close();
+
+//        session.commit();
+//        session.close();
         if(a!=1){
             return  false;
         }
@@ -116,13 +127,13 @@ public class ProductMabatis implements ProductDao {
         SqlSessionFactory ssf  = new SqlSessionFactoryBuilder().build(reader);
         session= ssf.openSession();
 
-        Object  object =session.selectOne("com.neuedu.entity.Product.findById",10);
+        Object  object =session.selectOne("com.neuedu.entity.Product.findById",id);
         Product p=null;
         if( object instanceof  Product){
              p = (Product)object;
         }
         session.close();
-        System.out.println(p.getName()+"终于找到你");
+//        System.out.println(p.getName()+"终于找到你");
         return p;
     }
 
